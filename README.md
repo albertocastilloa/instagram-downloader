@@ -1,2 +1,2 @@
 # instagram-downloader
-A instagram imagees/videos downloader
+A instagram images/videos downloader
