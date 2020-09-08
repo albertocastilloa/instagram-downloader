@@ -29,26 +29,19 @@ def get_content(link):
  
     #Navigate URL
     driver.get(link)
-    #try:
+    try:
         #Find metadata
-    media_type = driver.find_element_by_xpath("//meta[@property='og:type']").get_attribute("content")
+        media_type = driver.find_element_by_xpath("//meta[@property='og:type']").get_attribute("content")
         #media_description = driver.find_element_by_xpath("//meta[@property='og:description']").get_attribute("content")
 
-    if media_type == "video":
-        media_link = driver.find_element_by_xpath("//meta[@property='og:video']").get_attribute("content")
-        urllib.request.urlretrieve(media_link, "{}.mp4".format(video_directory + filename))
-    else:
-        media_link = driver.find_element_by_xpath("//meta[@property='og:image']").get_attribute("content")
-        urllib.request.urlretrieve(media_link, "{}.jpg".format(img_directory + filename))
+        if media_type == "video":
+            media_link = driver.find_element_by_xpath("//meta[@property='og:video']").get_attribute("content")
+            urllib.request.urlretrieve(media_link, "{}.mp4".format(video_directory + filename))
+        else:
+            media_link = driver.find_element_by_xpath("//meta[@property='og:image']").get_attribute("content")
+            urllib.request.urlretrieve(media_link, "{}.jpg".format(img_directory + filename))
 
-    return True
-            
-"""new_list[link] = {"type":media_type, "description":media_description, 
-"id_link": link, "IG_link": media_link, "ht":ht,
-"posts": 0, "followers": 0, "following": 0}"""
+        return True
 
-"""except:
-    return False"""
-
-x = get_content("https://www.instagram.com/p/CEEmQJIDxGm/")
-print(x)
+    except:
+        return False
